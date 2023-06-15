@@ -3,22 +3,22 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Container } from '@mui/material';
 import '../Styles/StyleView.css';
+import WordCloud from './WordCloud';
+import { useCallback } from 'react';
 
 function VideoView({ video }) {
   const [infoVideo, setInfoVideo] = React.useState(null);
+  const videoName = video.fileName.replace('.csv', '');
 
-  async function getInfoVideo() {
-    const videoName = video.fileName.replace('.csv', '');
-
+  const getInfoVideo = useCallback(async () => {
     const infoVideo = await fetch(`http://localhost:5000/analyse/${videoName}`);
     const infoVideoJSON = await infoVideo.json();
-
     setInfoVideo(infoVideoJSON);
-  }
+  }, [videoName]);
 
   React.useEffect(() => {
     getInfoVideo();
-  }, [video]);
+  }, [getInfoVideo]);
 
   return (
     <Container sx={{ marginTop: '50px' }}>
@@ -44,7 +44,7 @@ function VideoView({ video }) {
           </Box>
         </Grid>
         <Grid item xs={8}>
-          AQUI VEM A NUVEM DE PALAVRAS
+          <WordCloud videoName={videoName} />
         </Grid>
       </Grid>
     </Container>
