@@ -1,0 +1,38 @@
+.boxNotas{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px
+}
+
+.boxNotas div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  min-width: 200px;
+  min-height: 150px;
+  background-color: #f1f1f1;
+  border: 1px solid rgba(130, 130, 130);
+  box-shadow: -5px 5px 5px #b5b5b5;
+}
+
+.boxNotas div p{
+  font-size: 1rem;
+  margin: 0;
+}
+
+.boxNotas div span{
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.boxPromotor span{
+  color: #5ebf1f
+}
+
+
+.boxDetrator span{
+  color: #b51f1f
+}
