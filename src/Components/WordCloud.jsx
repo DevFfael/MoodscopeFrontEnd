@@ -8,7 +8,9 @@ const WordCloud = ({ videoName }) => {
   // const array = [];
 
   const countWords = useCallback((sentence) => {
-    const cleanedSentence = sentence.replace(/[^\w\s]|\d/g, '').toLowerCase();
+    const cleanedSentence = sentence
+      .replace(/[^\w\sáàâãéèêíïóôõöúçñ]|\d/g, '')
+      .toLowerCase();
     const words = cleanedSentence.split(' ');
     const wordCount = {};
     words.forEach((word) => {
@@ -20,6 +22,10 @@ const WordCloud = ({ videoName }) => {
     Object.entries(wordCount).forEach(([value, count]) => {
       array.push({ value, count });
     });
+
+    array.splice(100);
+
+    console.log(array);
 
     return array;
   }, []);
@@ -38,7 +44,7 @@ const WordCloud = ({ videoName }) => {
   return (
     <div>
       {words ? (
-        <TagCloud minSize={10} maxSize={100} tags={words} />
+        <TagCloud minSize={15} maxSize={120} tags={words} />
       ) : (
         <h1>Teste</h1>
       )}
