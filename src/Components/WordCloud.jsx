@@ -5,7 +5,6 @@ import { TagCloud } from 'react-tagcloud';
 
 const WordCloud = ({ videoName }) => {
   const [words, setWords] = useState([]);
-  // const array = [];
 
   const countWords = useCallback((sentence) => {
     const cleanedSentence = sentence
@@ -25,8 +24,6 @@ const WordCloud = ({ videoName }) => {
 
     array.splice(100);
 
-    console.log(array);
-
     return array;
   }, []);
 
@@ -42,13 +39,7 @@ const WordCloud = ({ videoName }) => {
   }, [getWords]);
 
   return (
-    <div>
-      {words ? (
-        <TagCloud minSize={15} maxSize={120} tags={words} />
-      ) : (
-        <h1>Teste</h1>
-      )}
-    </div>
+    <div>{words && <TagCloud minSize={15} maxSize={120} tags={words} />}</div>
   );
 };
 
